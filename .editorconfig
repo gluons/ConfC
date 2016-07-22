@@ -1,0 +1,9 @@
+root = true
+
+[*]
+indent_style = tab
+charset = utf-8
+
+[{*.{coffee,yml,yaml,jade,pug},{package,bower}.json}]
+indent_style = space
+indent_size = 2

@@ -1,0 +1,10 @@
+{
+	"files": [
+		".bowerrc",
+		".editorconfig",
+		".typingsrc",
+		".eslintrc.json",
+		"coffeelint.json"
+	],
+	"extendedFiles": []
+}
