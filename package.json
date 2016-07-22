@@ -1,0 +1,32 @@
+{
+  "name": "confc",
+  "version": "1.0.0",
+  "description": "Start new project with your default config.",
+  "main": "cli.js",
+  "preferGlobal": true,
+  "bin": {
+    "confc": "./cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluons/ConfC.git"
+  },
+  "keywords": [
+    "conf",
+    "config",
+    "configuration"
+  ],
+  "author": "Gluons <sarunta@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gluons/ConfC/issues"
+  },
+  "homepage": "https://github.com/gluons/ConfC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "rc": "^1.1.6"
+  }
+}
