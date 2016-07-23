@@ -1,59 +1,36 @@
-const defaultConf = require('./defaultConf.json');
-const rcConf = require('rc')('confc', defaultConf);
+'use strict';
+const program = require('commander');
 
-const home = process.platform === 'win32' ? process.env.USERPROFILE : process.env.HOME;
-const cwd = __dirname;
+const packageInfo = require('./package.json');
 
-const fs = require('fs');
-const path = require('path');
-const chalk = require('chalk');
+const confc = require('./');
 
-/*
- * Functions.
- */
+var files;
 
-// Copy function. See http://stackoverflow.com/a/14387791/1675907.
-var copy = (src, dest, cb) => {
-	let cbCalled = false;
-	let done = (err) => {
-		if (!cbCalled) {
-			cb(err);
-			cbCalled = true;
+program
+	.version(packageInfo.version)
+	.arguments(`[fileNames...]`)
+	.action((fileNames) => {
+		if (typeof fileNames !== 'undefined') {
+			files = fileNames;
 		}
-	};
+	})
+	.option(`-p, --path [path]`, `Path to default configuration files.`)
+	.option(`-v, --verbose`, `Display more information.`)
+	.parse(process.argv);
 
-	let rs = fs.createReadStream(src);
-	rs.on('error', function(err) {
-		done(err);
+if (typeof program.path === 'string') {
+	confc.config.path = program.path;
+}
+if (program.verbose) {
+	confc.config.verbose = true;
+}
+if (Array.isArray(files) && (files.length > 0)) {
+	confc.copy(files).catch((errors) => {
+		confc.utils.displayErrors(errors);
 	});
-	let ws = fs.createWriteStream(dest);
-	ws.on('error', function(err) {
-		done(err);
+} else {
+	confc.copyAll().catch((errors) => {
+		confc.utils.displayErrors(errors);
 	});
-	ws.on('close', function() {
-		done();
-	});
-	rs.pipe(ws);
-};
-// Copy files to current working directory.
-var copyConf = (files, cb) => {
-	for (let file of files) {
-		let srcPath = path.join(home, file);
-		let destPath = path.join(cwd, file);
-		fs.access(srcPath, fs.constants.F_OK | fs.constants.R_OK, (err) => {
-			if (!err) {
-				copy(srcPath, destPath, (err2) => {
-					if (!err2) {
-						cb();
-					} else {
-						cb(new Error(`Cannot copy file from ${srcPath} to ${destPath}.`));
-					}
-				});
-			} else {
-				cb(new Error(`Cannot read file ${srcPath}.`));
-			}
-		});
-	}
-};
-
-var userConf = rcConf.config;
+}

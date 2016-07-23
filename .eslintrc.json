@@ -17,6 +17,12 @@
 		],
 		"no-unused-vars": "warn",
 		"no-console": "off",
+		"no-empty": [
+			"error",
+			{
+				"allowEmptyCatch": true
+			}
+		],
 		"no-redeclare": "warn",
 		"space-before-function-paren": "off",
 		"space-infix-ops": [
@@ -27,9 +33,8 @@
 		]
 	},
 	"env": {
-		"browser": true,
-		"es6": true,
-		"node": true
+		"node": true,
+		"es6": true
 	},
 	"extends": "eslint:recommended"
 }
