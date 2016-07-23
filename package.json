@@ -8,6 +8,8 @@
     "confc": "./cli.js"
   },
   "scripts": {
+    "chmod-win": "powershell .\\scripts\\change-permission.ps1",
+    "chmod": "./scripts/chmod.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,6 +34,10 @@
     "rc": "^1.1.6"
   },
   "devDependencies": {
-    "del": "^2.2.1"
+    "chai": "*",
+    "chai-as-promised": "*",
+    "chai-files": "^1.4.0",
+    "del": "^2.2.1",
+    "mocha": "*"
   }
 }

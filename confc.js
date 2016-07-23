@@ -6,7 +6,6 @@ const yaml = require('js-yaml');
 const utils = require('./lib/utils');
 
 const home = process.platform === 'win32' ? process.env.USERPROFILE : process.env.HOME;
-const cwd = process.cwd();
 
 const defaultConf = {
 	path: home,
@@ -41,7 +40,7 @@ var copyConf = (fileNames) => {
 		let errors = []; // List of error.
 		for (let fileName of fileNames) {
 			let srcPath = path.resolve(path.join(config.path, fileName));
-			let destPath = path.resolve(path.join(cwd, fileName));
+			let destPath = path.resolve(path.join(process.cwd(), fileName));
 			try {
 				fs.accessSync(srcPath, fs.constants.F_OK | fs.constants.R_OK);
 				if (config.verbose) {
