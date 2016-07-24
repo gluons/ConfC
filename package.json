@@ -5,7 +5,7 @@
   "main": "confc.js",
   "preferGlobal": true,
   "bin": {
-    "confc": "./cli.js"
+    "confc": "./bin/confc.js"
   },
   "scripts": {
     "chmod-win": "powershell .\\scripts\\change-permission.ps1",
