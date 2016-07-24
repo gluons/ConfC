@@ -3,6 +3,8 @@ node_js:
   - "6"
   - "5"
   - "4"
+before_script:
+  - npm run chmod
 env:
   - CXX=g++-4.8
 addons:
