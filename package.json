@@ -10,7 +10,7 @@
   "scripts": {
     "chmod-win": "powershell .\\scripts\\change-permission.ps1",
     "chmod": "./scripts/chmod.sh",
-    "test": "mocha"
+    "test": "sudo mocha"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,6 @@
   },
   "devDependencies": {
     "chai": "*",
-    "chai-as-promised": "*",
     "chai-files": "^1.4.0",
     "del": "^2.2.1",
     "mocha": "*"
