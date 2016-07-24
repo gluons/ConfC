@@ -9,13 +9,15 @@ var files;
 
 program
 	.version(packageInfo.version)
+	.usage(`[options] [filename ...]`)
+	.description(`Clone your default configurations to current working directory.`)
 	.arguments(`[fileNames...]`)
 	.action((fileNames) => {
 		if (typeof fileNames !== 'undefined') {
 			files = fileNames;
 		}
 	})
-	.option(`-p, --path [path]`, `Path to default configuration files.`)
+	.option(`-p, --path [path]`, `Path to default configuration files.`, (p) => p.replace(/"|'/g, ''))
 	.option(`-v, --verbose`, `Display more information.`)
 	.parse(process.argv);
 
