@@ -4,6 +4,7 @@ node_js:
   - "5"
   - "4"
 before_script:
+  - chmod a+x ./scripts/chmod.sh
   - npm run chmod
 env:
   - CXX=g++-4.8
