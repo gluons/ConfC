@@ -5,9 +5,9 @@ node_js:
   - "5"
   - "4"
 before_script:
-  - chmod a+x ./scripts/chmod.sh
-  - npm run chmod
-script: "sudo $(which npm) test"
+  - sudo chmod 444 ./test/unwritableTarget
+  - sudo chmod 777 ./test/writableTarget
+script: "sudo npm test"
 env:
   - CXX=g++-4.8
 addons:
