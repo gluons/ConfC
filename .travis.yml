@@ -7,4 +7,4 @@ node_js:
 before_script:
   - sudo chmod 555 ./test/unwritableTarget
   - sudo chmod 777 ./test/writableTarget
-script: sudo ./node_modules/.bin/mocha
+script: sudo $(which npm) test
