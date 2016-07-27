@@ -10,3 +10,4 @@ before_script:
 install:
   - npm install -g mocha
   - npm install
+script: sudo mocha
