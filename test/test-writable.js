@@ -34,16 +34,23 @@ describe('copy config file to writable directory', () => {
 					expect(errors).to.be.undefined;
 					done();
 				}
-			);
-		// return expect(promise).to.be.fulfilled;
+			).catch((err) => {
+				done(err); // AssertionError throw from expect
+			});
 	});
 	it('should have config files', (done) => {
 		promise
-			.then(() => {
-				expect(file('.bowerrc')).to.exist;
-				expect(file('.editorconfig')).to.exist;
-				done();
-			}).catch((err) => {
+			.then(
+				() => {
+					expect(file('.bowerrc')).to.exist;
+					expect(file('.editorconfig')).to.exist;
+					done();
+				},
+				(errors) => {
+					expect(errors).to.be.undefined;
+					done();
+				}
+			).catch((err) => {
 				done(err); // AssertionError throw from expect
 			});
 	});

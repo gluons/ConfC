@@ -38,11 +38,17 @@ describe('copy config file to unwritable directory', () => {
 	});
 	it('should not have config files', (done) => {
 		promise
-			.catch(() => {
-				expect(file('.bowerrc')).to.not.exist;
-				expect(file('.editorconfig')).to.not.exist;
-				done();
-			})
+			.then(
+				() => {
+					// Reach fulfilled state. Fail.
+					done(new Error('Should return errors but no error.'));
+				},
+				() => {
+					expect(file('.bowerrc')).to.not.exist;
+					expect(file('.editorconfig')).to.not.exist;
+					done();
+				}
+			)
 			.catch((err) => {
 				done(err); // AssertionError throw from expect
 			});
