@@ -4,7 +4,7 @@ node_js:
   - "5"
   - "4"
 before_script:
-  - npm run chmod
+  - ./scripts/chmod.sh
 install:
   - npm install -g mocha
   - npm install
