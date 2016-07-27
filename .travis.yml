@@ -4,8 +4,7 @@ node_js:
   - "5"
   - "4"
 before_script:
-  - sudo chmod 444 ./test/unwritableTarget
-  - sudo chmod 777 ./test/writableTarget
+  - npm run chmod
 install:
   - npm install -g mocha
   - npm install

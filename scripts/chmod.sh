@@ -1,2 +1,3 @@
 #!/bin/bash
-chmod 444 ./test/unwritableTarget
+chmod 555 ./test/unwritableTarget
+chmod 777 ./test/writableTarget
