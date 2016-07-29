@@ -10,7 +10,7 @@
   "scripts": {
     "chmod-win": "powershell .\\scripts\\change-permission.ps1",
     "chmod": "./scripts/chmod.sh",
-    "test": "mocha"
+    "test": "cd ./test/unwritableTarget/ && mocha ../test-unwritable.js && cd ../writableTarget/ && mocha ../test-writable.js && cd ../../"
   },
   "repository": {
     "type": "git",

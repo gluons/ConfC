@@ -1,5 +1,4 @@
 'use strict';
-const path = require('path');
 
 const chai = require('chai');
 const chaiAsPromised = require("chai-as-promised");
@@ -11,14 +10,10 @@ const expect = chai.expect;
 const file = chaiFiles.file;
 const del = require('del');
 
-const targetPath = path.resolve(path.join(__dirname, 'writableTarget'));
-
 describe('copy config file to writable directory', () => {
 	let promise;
 	before((done) => {
 		del(['test/writableTarget/*', 'test/writableTarget/.*', '!test/writableTarget/.confcrc']).then(() => {
-			process.chdir(targetPath); // Change current working directory
-
 			const confc = require('../');
 
 			promise = confc.copyAll();

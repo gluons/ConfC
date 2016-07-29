@@ -7,4 +7,3 @@ node_js:
 before_script:
   - sudo chmod 555 ./test/unwritableTarget
   - sudo chmod 777 ./test/writableTarget
-script: sudo $(which npm) test
