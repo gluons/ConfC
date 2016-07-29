@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 
 const chai = require('chai');
 const chaiAsPromised = require("chai-as-promised");
@@ -8,6 +9,9 @@ chai.use(chaiFiles);
 
 const expect = chai.expect;
 const file = chaiFiles.file;
+
+const targetPath = path.resolve(path.join(__dirname, 'unwritableTarget'));
+process.chdir(targetPath); // Change current working directory
 
 const confc = require('../');
 
