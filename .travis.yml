@@ -1,9 +1,5 @@
-sudo: required
 language: node_js
 node_js:
   - "6"
   - "5"
   - "4"
-before_script:
-  - sudo chmod 555 ./test/unwritableTarget
-  - sudo chmod 777 ./test/writableTarget
