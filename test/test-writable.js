@@ -2,7 +2,9 @@
 const path = require('path');
 
 const chai = require('chai');
+const chaiAsPromised = require("chai-as-promised");
 const chaiFiles = require('chai-files');
+chai.use(chaiAsPromised);
 chai.use(chaiFiles);
 
 const expect = chai.expect;
@@ -23,35 +25,18 @@ describe('copy config file to writable directory', () => {
 			done();
 		});
 	});
-	it('should finish copying without error', (done) => {
-		promise
-			.then(
-				() => {
-					// Reach fulfilled state. Pass.
-					done();
-				},
-				(errors) => {
-					expect(errors).to.be.undefined;
-					done();
-				}
-			).catch((err) => {
-				done(err); // AssertionError throw from expect
-			});
+	it('should finish copying without error', () => {
+		return expect(promise).to.be.fulfilled;
 	});
-	it('should have config files', (done) => {
-		promise
-			.then(
+	it('should have config files', () => {
+		return Promise.all([
+			expect(promise).to.not.be.rejected,
+			promise.then(
 				() => {
 					expect(file('.bowerrc')).to.exist;
 					expect(file('.editorconfig')).to.exist;
-					done();
-				},
-				(errors) => {
-					expect(errors).to.be.undefined;
-					done();
 				}
-			).catch((err) => {
-				done(err); // AssertionError throw from expect
-			});
+			)
+		]);
 	});
 });
