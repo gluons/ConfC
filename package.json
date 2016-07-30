@@ -1,7 +1,7 @@
 {
   "name": "confc",
   "version": "1.0.0",
-  "description": "Start new project with your default config.",
+  "description": "Start new project with your default configs.",
   "main": "confc.js",
   "preferGlobal": true,
   "bin": {

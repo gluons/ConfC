@@ -1,6 +1,6 @@
 'use strict';
 
-const description = 'Clone your default configurations to current working directory.';
+const description = 'Clone your default configuration files to current working directory.';
 
 const argv = require('yargs')
 			.version()
@@ -14,7 +14,9 @@ const argv = require('yargs')
 			.describe('v', 'Display more information.')
 			.help('h')
 			.alias('h', 'help')
-			.example('comfc --path ~ .editorconfig')
+			.example('confc')
+			.example('confc .eslintrc.json')
+			.example('confc --path $home .editorconfig')
 			.argv;
 
 const confc = require('./');
