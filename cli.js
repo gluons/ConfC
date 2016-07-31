@@ -27,7 +27,9 @@ if ((typeof argv.path === 'string') && (argv.path.length > 0)) {
 	confc.config.path = argv.path;
 }
 
-confc.config.verbose = argv.verbose;
+if (argv.verbose) {
+	confc.config.verbose = argv.verbose;
+}
 
 if (Array.isArray(files) && (files.length > 0)) {
 	confc.copy(files).catch((errors) => {
