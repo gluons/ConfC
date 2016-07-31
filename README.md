@@ -1,11 +1,18 @@
 # ConfC
 [![license](https://img.shields.io/github/license/gluons/ConfC.svg?style=flat-square)](https://github.com/gluons/ConfC/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/confc.svg?style=flat-square)](https://www.npmjs.com/package/confc)
 [![Support Files](https://img.shields.io/badge/Support%20Files-5-orange.svg?style=flat-square)](https://github.com/gluons/ConfC/blob/master/files.yaml)
 [![Travis](https://img.shields.io/travis/gluons/ConfC.svg?style=flat-square)](https://travis-ci.org/gluons/ConfC)
 
 **Config Clone** — Start new project with your default configs.
 
 Clone your default configuration files to current working directory.
+
+## Installation
+Install via [npm](https://www.npmjs.com/) as global package.
+```
+npm install -g confc
+```
 
 ## Configuration
 You can configure **ConfC** with `.confcrc` file. More detail about `rc` configuration file can be found from [dominictarr/rc](https://github.com/dominictarr/rc).
