@@ -8,7 +8,7 @@
     "confc": "./bin/confc.js"
   },
   "scripts": {
-    "chmod-win": "powershell .\\scripts\\change-permission.ps1",
+    "chperm": "powershell .\\scripts\\change-permission.ps1",
     "chmod": "./scripts/chmod.sh",
     "test": "mocha"
   },
