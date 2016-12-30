@@ -1,41 +1,6 @@
 {
-	"parserOptions": {
-		"ecmaVersion": 6
-	},
-	"rules": {
-		"indent": [
-			"warn",
-			"tab",
-			{
-				"SwitchCase": 1
-			}
-		],
-		"linebreak-style": "off",
-		"semi": [
-			"error",
-			"always"
-		],
-		"no-unused-vars": "warn",
-		"no-console": "off",
-		"no-empty": [
-			"error",
-			{
-				"allowEmptyCatch": true
-			}
-		],
-		"no-redeclare": "warn",
-		"space-before-function-paren": "off",
-		"space-infix-ops": [
-			"error",
-			{
-				"int32Hint": false
-			}
-		]
-	},
 	"env": {
-		"node": true,
-		"es6": true,
 		"mocha": true
 	},
-	"extends": "eslint:recommended"
+	"extends": "gluons"
 }

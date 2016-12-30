@@ -1,124 +1,54 @@
 'use strict';
-const fs = require('fs');
+
+const fs = require('fs-extra');
 const path = require('path');
+const nvl = require('nvl');
+const rc = require('rc');
+const sequential = require('promise-sequential');
 const yaml = require('js-yaml');
 
 const utils = require('./lib/utils');
 
+// Home path
 const home = process.platform === 'win32' ? process.env.USERPROFILE : process.env.HOME;
 
+// Default files name
+const defaultFiles = yaml.safeLoad(fs.readFileSync(path.join(__dirname, 'files.yaml'), 'utf8'));
+
+// Configurations
 const defaultConf = {
-	path: home,
-	files: yaml.safeLoad(fs.readFileSync(path.join(__dirname, 'files.yaml'), 'utf8')),
-	extendedFiles: [],
-	verbose: false
+	path: home, // Config files path
+	files: defaultFiles, // Files name
+	overwrite: false, // Force to overwrite
+	verbose: false // Output verbose
 };
-const config = require('rc')('confc', defaultConf);
 
-// Initialize export module.
-module.exports = {};
+let copy = function copy(fileNames, options) {
+	let config = rc('confc', defaultConf); // Load configs from rc file
 
-Object.defineProperty(module.exports, 'config', {
-	value: config,
-	writable: false,
-	enumerable: true,
-	configurable: false
-});
+	fileNames = nvl(fileNames, config.files); // Files name to copy
+	if (!Array.isArray(fileNames) && (typeof fileNames === 'object')) {
+		options = fileNames;
+		fileNames = config.files;
+	}
+	options = nvl(options, {});
+	options.path = nvl(options.path, config.path); // Config files path
+	options.overwrite = nvl(options.overwrite, config.overwrite); // Force to overwrite
 
-/**
- * Copy config files to current working directory.
- * @param  {String[]} fileNames - File names to copy.
- * @return {Promise} Promise of copying.
- */
-var copyConf = (fileNames) => {
-	return new Promise(function(resolve, reject) {
-		// If no file names, immediately resolve.
-		if (!fileNames || (Array.isArray(fileNames) && fileNames.length == 0)) {
-			resolve();
-		}
-		let doneCount = 0; // Completed file name counter.
-		let errors = []; // List of error.
-		for (let fileName of fileNames) {
-			let srcPath = path.resolve(path.join(config.path, fileName));
-			let destPath = path.resolve(path.join(process.cwd(), fileName));
-			try {
-				fs.accessSync(srcPath, fs.constants.F_OK | fs.constants.R_OK);
-				if (config.verbose) {
-					utils.displayVerbose(srcPath, destPath);
-				}
-				utils.copy(srcPath, destPath).then(
-					() => { // Fulfilled
-						doneCount++;
-						if (doneCount == fileNames.length) {
-							resolve();
-						}
-					},
-					(err) => { // Rejected
-						doneCount++;
-						errors.push(err);
-						if (doneCount == fileNames.length) {
-							reject(errors);
-						}
-					}
-				);
-			} catch (err) {
-				doneCount++; // Ignore non-existent file. Skip it.
-			}
-		}
-	});
+	if (Array.isArray(fileNames) && (fileNames.length > 0)) {
+		return sequential(fileNames.map(fileName => function () {
+			let src = path.resolve(path.join(options.path, fileName));
+			return utils.silentlyCopy(src, {
+				overwrite: options.overwrite
+			});
+		}));
+	} else {
+		return Promise.resolve();
+	}
 };
-Object.defineProperty(module.exports, 'copy', {
-	value: copyConf,
-	writable: false,
-	enumerable: false,
-	configurable: false
-});
 
-/**
- * Copy all files in config to current working directory.
- * @return {Promise} Promise of copying all.
- */
-var copyAll = () => {
-	let errors = [];
-	let promises = [
-		copyConf(config.files).catch((e) => {
-			errors = errors.concat(e);
-		}),
-		copyConf(config.extendedFiles).catch((e) => {
-			errors = errors.concat(e);
-		})
-	];
-	return Promise.all(promises).then(() => {
-		if (errors.length > 0) {
-			return Promise.reject(errors);
-		} else {
-			return Promise.resolve();
-		}
-	});
+const confc = {
+	copy
 };
-Object.defineProperty(module.exports, 'copyAll', {
-	value: copyAll,
-	writable: false,
-	enumerable: true,
-	configurable: false
-});
 
-// Utils functions.
-Object.defineProperty(module.exports, 'utils', {
-	value: {},
-	writable: false,
-	enumerable: true,
-	configurable: false
-});
-Object.defineProperty(module.exports.utils, 'displayError', {
-	value: utils.displayError,
-	writable: false,
-	enumerable: true,
-	configurable: false
-});
-Object.defineProperty(module.exports.utils, 'displayErrors', {
-	value: utils.displayErrors,
-	writable: false,
-	enumerable: true,
-	configurable: false
-});
+module.exports = confc;
