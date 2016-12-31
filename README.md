@@ -1,8 +1,8 @@
 # ConfC
 [![license](https://img.shields.io/github/license/gluons/ConfC.svg?style=flat-square)](https://github.com/gluons/ConfC/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/v/confc.svg?style=flat-square)](https://www.npmjs.com/package/confc)
-[![Support Files](https://img.shields.io/badge/Support%20Files-5-orange.svg?style=flat-square)](https://github.com/gluons/ConfC/blob/master/files.yaml)
 [![Travis](https://img.shields.io/travis/gluons/ConfC.svg?style=flat-square)](https://travis-ci.org/gluons/ConfC)
+[![ESLint Gluons](https://img.shields.io/badge/code%20style-gluons-9C27B0.svg?style=flat-square)](https://github.com/gluons/eslint-config-gluons)
 
 **Config Clone** — Start new project with your default configs.
 
@@ -10,6 +10,9 @@ Clone your default configuration files to current working directory.
 
 ## Installation
 Install via [npm](https://www.npmjs.com/) as global package.
+
+[![NPM](https://nodei.co/npm/confc.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/confc)
+
 ```
 npm install -g confc
 ```
@@ -19,116 +22,138 @@ You can configure **ConfC** with `.confcrc` file. More detail about `rc` configu
 
 ### .confcrc
  - **path**  
-   Type: `String`
+   Type: `String`  
+   Default: **$HOME** (Your **home** directory)
 
    Path to directory that contain your default configuration files.
 
-   Default is your home directory.
  - **files**  
-   Type: `Array of String`
+   Type: `Array.<String>`  
+   Default: Files name in [file list](./files.yaml)
 
-   List of target file names that you want to clone.
+   List of target files name that you want to clone.
 
-   Default is file names in [file list](./files.yaml).
+   > If you have your own configuration files and don't want to use files from [file list](./files.yaml), just replace it with your file names.
 
-   > If you have your own configuration files and don't want to use list from [file list](./files.yaml), just replace it with your file names.
- - **extendedFiles**  
-   Type: `Array of String`
+ - **overwrite**  
+   Type: `Boolean`  
+   Default: `false`
+   
+   Force to overwrite files if it exist.
 
-   Optional option. Same as **files**. But can use to extend list in **files** with your own configuration files.
-
-   Default is an `Empty Array` (`[]`).
-
-   > If you replace **files** with your own configuration file names, you don't need to use this option.
  - **verbose**  
-   Type: `Boolean`
+   Type: `Boolean`  
+   Default: `false`
 
-   Display cloning information.
+   Display verbose output.
 
-   Default is `false`.
-
-<br>
-
-You can also configure **ConfC** with `config` property in code. 😃
-```javascript
-const confc = require('confc');
-confc.config.path = 'foo/bar';
-confc.config.verbose = true;
-```
-
-## Command Line
+## Command Line (Preferred)
 ```
 Usage: confc [options] [filename..]
 
 Clone your default configuration files to current working directory.
 
 Options:
-  --version, -V  Show version number                                   [boolean]
-  -p, --path     Path to default configuration files.                   [string]
-  -v, --verbose  Display more information.                             [boolean]
-  -h, --help     Show help                                             [boolean]
+  --version, -V    Show version number                                 [boolean]
+  -p, --path       Path to configuration files         [string] [default: $HOME]
+  -f, --overwrite  Force to overwrite                 [boolean] [default: false]
+  -v, --verbose    Display more information           [boolean] [default: false]
+  -h, --help       Show help                                           [boolean]
 
 Examples:
   confc
-  confc .eslintrc.json
-  confc --path $home .editorconfig
+  confc .eslintrc.json .editorconfig
+  confc --path ./myConfigs/ .editorconfig
 ```
 
-## API
-### Core
-#### confc.copy(fileNames)
-Return: [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+## Node API
+### confc([fileNames, [options]])
+Return: `Promise`
 
-Copy specific files to current working directory.
+Clone configuration files from your **home** path (or your desired path) to current working directory.
 
-##### fileNames
-Type: `Array of String`
+#### fileNames
+Type: `Array.<String>`
 
-Specific file names.
+Files name to clone.
 
-```javascript
-confc.copy([
-    '.eslintrc.json',
-    '.editorconfig'
-]).then(() => {
-    console.log('Copied.');
-});
-```
+#### options
+Type: `Object`
 
-#### confc.copyAll()
-Return: [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+Options:
+ - **path**  
+   Type: `String`
+   
+   Path to configuration files.
 
-Copy all files (in our [file list](./files.yaml)) to current working directory.
-```javascript
-confc.copyAll().then(() => {
-    console.log('Copied.');
-});
-```
+ - **overwrite**  
+   Type: `Boolean`
 
----
+   Force to overwrite.
 
-### Utilities
+If no any options given, this function will get the options from your `.confcrc` (if it exist).
 
-#### confc.utils.displayError(error)
-Display colored **ConfC** error to `stderr`.
+When no `.confcrc`, it will fallback default value (`path` = your **home** path, `overwrite` = `false`).
 
-##### error
-Type: `Error`
+##### Example:
+ - No parameters
 
-An **ConfC** error.
+   At **home** directory
+   ```
+   $HOME
+   |- .editorconfig
+   |- .eslintrc.json
+   ```
 
-```javascript
-confc.utils.displayError(error);
-```
+   In `files`
+   ```
+   ---
 
-#### confc.utils.displayErrors(errors)
-Display colored **ConfC** errors to `stderr`.
+   - .bowerrc
+   - .editorconfig
+   - .typingsrc
+   - .eslintrc.json
+   - coffeelint.json
+   ```
 
-##### errors
-Type: `Array of Error`
+   **Start!!!**
 
-The **ConfC** errors.
+   ```javascript
+   const confc = require('confc');
+   confc().then(resultsForEachFiles => {
+      console.log(resultsForEachFiles); // -> [false (.bowerrc), true (.editorconfig), false (.typingsrc), true (.eslintrc.json), false (coffeelint.json)]
+   });
+   ```
 
-```javascript
-confc.utils.displayErrors(errors); // errors = [error1, error2, ...]
-```
+ - With `fileNames`
+
+   ```javascript
+   const confc = require('confc');
+   confc(['.editorconfig', '.eslintrc.json']).then(resultsForEachFiles => {
+	   console.log(resultsForEachFiles);
+   });
+   ```
+
+ - With `fileNames` and `options`
+
+   ```javascript
+   const confc = require('confc');
+   confc(['.editorconfig', '.eslintrc.json'], {
+	   path: './myConfigs',
+	   overwrite: true
+   }).then(resultsForEachFiles => {
+	   console.log(resultsForEachFiles);
+   });
+   ```
+
+ - With only `options`
+
+   ```javascript
+   const confc = require('confc');
+   confc({
+	   path: './myConfigs',
+	   overwrite: true
+   }).then(resultsForEachFiles => {
+	   console.log(resultsForEachFiles);
+   });
+   ```

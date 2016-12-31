@@ -77,7 +77,7 @@ inquirer.prompt([
 	}
 }).then(
 	() => {
-		console.log(chalk.bold.green(`\nConfC completed.`));
+		console.log(`${chalk.bold.green('\nConfC completed.')} 🎉`);
 	},
 	err => {
 		console.error(err);
