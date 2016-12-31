@@ -22,10 +22,10 @@ if (process.platform === 'win32') {
 } else {
 	exec('./scripts/clean-test.sh', (err, stdout, stderr) => {
 		if (err) {
-			console.error(`exec error: ${err.toString()}`);
+			console.error(`Error: ${err.toString()}`);
 		} else {
-			console.log(`stdout: ${stdout.toString()}`);
-			console.error(`stderr: ${stderr.toString()}`);
+			console.log(stdout.toString());
+			console.error(stderr.toString());
 		}
 	});
 }

@@ -10,7 +10,7 @@
   "scripts": {
     "clean-test": "node ./scripts/clean-test.js",
     "pretest": "npm run clean-test",
-    "test": "mocha --harmony",
+    "test": "mocha",
     "posttest": "npm run clean-test"
   },
   "repository": {
