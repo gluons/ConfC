@@ -13,12 +13,12 @@ const file = chaiFiles.file;
 
 const confc = require('../confc');
 
-const dirEmptyPath = path.resolve(path.join(__dirname, './directoryEmpty'));
+const dirOverwritePath = path.resolve(path.join(__dirname, './directoryOverwrite'));
 
-describe('Copy config files to empty directory', () => {
+describe('Copy config files to directory with overwriting', () => {
 	let copyPromise;
 	before(() => {
-		process.chdir(dirEmptyPath);
+		process.chdir(dirOverwritePath);
 		copyPromise = confc.copy();
 		return copyPromise;
 	});
@@ -29,7 +29,7 @@ describe('Copy config files to empty directory', () => {
 		expect(file('.bowerrc')).to.exist;
 		expect(file('.editorconfig')).to.exist;
 	});
-	it('should copy the correct files', done => {
+	it('should overwrite files', done => {
 		process.chdir(__dirname);
 		fs.readdir('./configFiles', (err, files) => {
 			if (err) {
@@ -37,9 +37,15 @@ describe('Copy config files to empty directory', () => {
 			} else {
 				files.forEach(fileName => {
 					expect(file(
-						path.join('./directoryEmpty', fileName)
+						path.join('./directoryOverwrite', fileName)
 					)).to.equal(file(
 						path.join('./configFiles', fileName
+					)));
+
+					expect(file(
+						path.join('./directoryOverwrite', fileName)
+					)).to.not.equal(file(
+						path.join('./pre-existentConfigFiles', fileName
 					)));
 				});
 				done();
