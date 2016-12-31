@@ -1,3 +1,5 @@
+'use strict';
+
 const child_process = require('child_process');
 const spawn = child_process.spawn;
 const exec = child_process.exec;
