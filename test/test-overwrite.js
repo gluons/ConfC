@@ -19,7 +19,7 @@ describe('Copy config files to directory with overwriting', () => {
 	let copyPromise;
 	before(() => {
 		process.chdir(dirOverwritePath);
-		copyPromise = confc.copy();
+		copyPromise = confc();
 		return copyPromise;
 	});
 	it('should finish coping without error', () => {
