@@ -106,12 +106,12 @@ When no `.confcrc`, it will fallback to the default value.
    const confc = require('confc');
    let result = confc();
    if (result == true) {
-   	// Success
+		// Success
    } else if (result == false) {
-   	// Fail
+		// Fail
    } else {
-   	// result instanceof Error
-   	// Error
+		// result instanceof Error
+		// Error
    }
    ```
 
@@ -121,12 +121,12 @@ When no `.confcrc`, it will fallback to the default value.
    const confc = require('confc');
    let result = confc(['.editorconfig', '.eslintrc.json']);
    if (result == true) {
-   	// Success
+		// Success
    } else if (result == false) {
-   	// Fail
+		// Fail
    } else {
-   	// result instanceof Error
-   	// Error
+		// result instanceof Error
+		// Error
    }
    ```
 
@@ -135,16 +135,16 @@ When no `.confcrc`, it will fallback to the default value.
    ```javascript
    const confc = require('confc');
    let result = confc(['.editorconfig', '.eslintrc.json'], {
-   	path: './myConfigs',
-   	overwrite: true
+		path: './myConfigs',
+		overwrite: true
    });
    if (result == true) {
-   	// Success
+		// Success
    } else if (result == false) {
-   	// Fail
+		// Fail
    } else {
-   	// result instanceof Error
-   	// Error
+		// result instanceof Error
+		// Error
    }
    ```
 
@@ -153,15 +153,15 @@ When no `.confcrc`, it will fallback to the default value.
    ```javascript
    const confc = require('confc');
    let result = confc({
-   	path: './myConfigs',
-   	overwrite: true
+		path: './myConfigs',
+		overwrite: true
    });
    if (result == true) {
-   	// Success
+		// Success
    } else if (result == false) {
-   	// Fail
+		// Fail
    } else {
-   	// result instanceof Error
-   	// Error
+		// result instanceof Error
+		// Error
    }
    ```
