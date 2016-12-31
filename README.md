@@ -5,7 +5,7 @@
 [![Travis](https://img.shields.io/travis/gluons/ConfC.svg?style=flat-square)](https://travis-ci.org/gluons/ConfC)
 [![ESLint Gluons](https://img.shields.io/badge/code%20style-gluons-9C27B0.svg?style=flat-square)](https://github.com/gluons/eslint-config-gluons)
 
-**Config Clone** — Start new project with your default configs.
+**Config Clone** — 🆕 Start new project with your default configs.
 
 Clone your default configuration files to current working directory.
 
