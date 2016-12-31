@@ -1,6 +1,7 @@
 # ConfC
 [![license](https://img.shields.io/github/license/gluons/ConfC.svg?style=flat-square)](https://github.com/gluons/ConfC/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/v/confc.svg?style=flat-square)](https://www.npmjs.com/package/confc)
+[![npm](https://img.shields.io/npm/dt/confc.svg?style=flat-square)](https://www.npmjs.com/package/confc)
 [![Travis](https://img.shields.io/travis/gluons/ConfC.svg?style=flat-square)](https://travis-ci.org/gluons/ConfC)
 [![ESLint Gluons](https://img.shields.io/badge/code%20style-gluons-9C27B0.svg?style=flat-square)](https://github.com/gluons/eslint-config-gluons)
 
@@ -68,12 +69,13 @@ Examples:
 
 ## Node API
 ### confc([fileNames, [options]])
-Return: `Promise`
+Return: `Boolean` _(when copying have no error)_ or `Error` _(when copying have an error)_
 
 Clone configuration files from your **home** path (or your desired path) to current working directory.
 
 #### fileNames
-Type: `Array.<String>`
+Type: `Array.<String>`  
+Default: Files name in [file list](./files.yaml)
 
 Files name to clone.
 
@@ -82,78 +84,84 @@ Type: `Object`
 
 Options:
  - **path**  
-   Type: `String`
+   Type: `String`  
+   Default: **$HOME** (Your **home** directory)
    
    Path to configuration files.
 
  - **overwrite**  
-   Type: `Boolean`
+   Type: `Boolean`  
+   Default: `false`
 
    Force to overwrite.
 
-If no any options given, this function will get the options from your `.confcrc` (if it exist).
+If no any `fileNames` or `options` given, this function will get the options from your `.confcrc` (if it exist).
 
-When no `.confcrc`, it will fallback default value (`path` = your **home** path, `overwrite` = `false`).
+When no `.confcrc`, it will fallback to the default value.
 
 ##### Example:
  - No parameters
 
-   At **home** directory
-   ```
-   $HOME
-   |- .editorconfig
-   |- .eslintrc.json
-   ```
-
-   In `files`
-   ```
-   ---
-
-   - .bowerrc
-   - .editorconfig
-   - .typingsrc
-   - .eslintrc.json
-   - coffeelint.json
-   ```
-
-   **Start!!!**
-
    ```javascript
    const confc = require('confc');
-   confc().then(resultsForEachFiles => {
-      console.log(resultsForEachFiles); // -> [false (.bowerrc), true (.editorconfig), false (.typingsrc), true (.eslintrc.json), false (coffeelint.json)]
-   });
+   let result = confc();
+   if (result == true) {
+   	// Success
+   } else if (result == false) {
+   	// Fail
+   } else {
+   	// result instanceof Error
+   	// Error
+   }
    ```
 
  - With `fileNames`
 
    ```javascript
    const confc = require('confc');
-   confc(['.editorconfig', '.eslintrc.json']).then(resultsForEachFiles => {
-	   console.log(resultsForEachFiles);
-   });
+   let result = confc(['.editorconfig', '.eslintrc.json']);
+   if (result == true) {
+   	// Success
+   } else if (result == false) {
+   	// Fail
+   } else {
+   	// result instanceof Error
+   	// Error
+   }
    ```
 
  - With `fileNames` and `options`
 
    ```javascript
    const confc = require('confc');
-   confc(['.editorconfig', '.eslintrc.json'], {
-	   path: './myConfigs',
-	   overwrite: true
-   }).then(resultsForEachFiles => {
-	   console.log(resultsForEachFiles);
+   let result = confc(['.editorconfig', '.eslintrc.json'], {
+   	path: './myConfigs',
+   	overwrite: true
    });
+   if (result == true) {
+   	// Success
+   } else if (result == false) {
+   	// Fail
+   } else {
+   	// result instanceof Error
+   	// Error
+   }
    ```
 
  - With only `options`
 
    ```javascript
    const confc = require('confc');
-   confc({
-	   path: './myConfigs',
-	   overwrite: true
-   }).then(resultsForEachFiles => {
-	   console.log(resultsForEachFiles);
+   let result = confc({
+   	path: './myConfigs',
+   	overwrite: true
    });
+   if (result == true) {
+   	// Success
+   } else if (result == false) {
+   	// Fail
+   } else {
+   	// result instanceof Error
+   	// Error
+   }
    ```
