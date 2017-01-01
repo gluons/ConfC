@@ -6,13 +6,15 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const rc = require('rc');
 
+const utils = require('./lib/utils');
 const copyFiles = require('./lib/copyFiles');
 
 const defaultConfig = require('./lib/defaultConfig'); // Default configurations
 const config = rc('confc', defaultConfig); // Load configs from rc file
 
-const confcName = chalk.green('confc');
-const description = chalk.cyan('Clone your default configuration files to current working directory.');
+const confcName = utils.brightChalk(chalk.green)('confc');
+const description = utils.brightChalk(chalk.cyan)('Clone your default configuration files to current working directory.');
+const aww = '(｡◕‿◕｡)';
 
 const argv = require('yargs')
 			.config(config)
@@ -61,7 +63,7 @@ inquirer.prompt([
 	{
 		type: 'checkbox',
 		name: 'selectedFiles',
-		message: `Which files that you want to ${chalk.green('ConfC')}?`,
+		message: `Which files that you want to ${utils.brightChalk(chalk.green)('ConfC')}?`,
 		choices: existentFiles
 	}
 ]).then(answers => {
@@ -77,7 +79,7 @@ inquirer.prompt([
 	}
 }).then(
 	() => {
-		console.log(`${chalk.bold.green('\nConfC completed.')} 🎉`);
+		console.log(`${utils.brightChalk(chalk.green)('\nConfC completed.')} ${aww}`);
 	},
 	err => {
 		console.error(err);
