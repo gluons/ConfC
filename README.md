@@ -1,4 +1,6 @@
 # ConfC
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/gluons/ConfC.svg)](https://greenkeeper.io/)
 [![license](https://img.shields.io/github/license/gluons/ConfC.svg?style=flat-square)](https://github.com/gluons/ConfC/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/v/confc.svg?style=flat-square)](https://www.npmjs.com/package/confc)
 [![npm](https://img.shields.io/npm/dt/confc.svg?style=flat-square)](https://www.npmjs.com/package/confc)
