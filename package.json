@@ -36,7 +36,7 @@
     "nvl": "^1.0.1",
     "promise-sequential": "^1.1.1",
     "rc": "^1.1.6",
-    "yargs": "^6.5.0"
+    "yargs": "^7.0.1"
   },
   "devDependencies": {
     "chai": "*",
