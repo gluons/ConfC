@@ -8,6 +8,7 @@
     "confc": "./bin/confc.js"
   },
   "scripts": {
+    "lint": "eslint .",
     "clean-test": "node ./scripts/clean-test.js",
     "pretest": "npm run clean-test",
     "test": "mocha",
@@ -43,7 +44,7 @@
     "chai": "*",
     "chai-files": "^1.4.0",
     "eslint": "^3.12.2",
-    "eslint-config-gluons": "^2.0.0",
+    "eslint-config-gluons": "^2.0.1",
     "mocha": "*"
   }
 }
