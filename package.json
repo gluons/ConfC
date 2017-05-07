@@ -23,7 +23,7 @@
     "config",
     "configuration"
   ],
-  "author": "Gluons <sarunta@gmail.com>",
+  "author": "Saran Tanpituckpong <sarunta@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gluons/ConfC/issues"
@@ -43,7 +43,7 @@
   "devDependencies": {
     "chai": "*",
     "chai-files": "^1.4.0",
-    "eslint": "^3.12.2",
+    "eslint": "^3.19.0",
     "eslint-config-gluons": "^2.0.1",
     "mocha": "*"
   }
