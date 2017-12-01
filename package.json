@@ -1,14 +1,23 @@
 {
   "name": "confc",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Start new project with your default configs.",
-  "main": "confc.js",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "main": "./dist/confc.js",
+  "engines": {
+    "node": ">=6"
+  },
   "preferGlobal": true,
   "bin": {
     "confc": "./bin/confc.js"
   },
   "scripts": {
-    "lint": "eslint .",
+    "prebuild": "rimraf dist/*",
+    "build": "tsc -p .",
+    "lint": "tslint -p .",
     "clean-test": "node ./scripts/clean-test.js",
     "pretest": "npm run clean-test",
     "test": "mocha",
@@ -30,21 +39,23 @@
   },
   "homepage": "https://github.com/gluons/ConfC",
   "dependencies": {
-    "chalk": "^2.0.0",
-    "fs-extra": "^4.0.0",
-    "inquirer": "^4.0.0",
+    "chalk": "^2.3.0",
+    "fs-extra": "^4.0.2",
+    "inquirer": "^4.0.1",
     "js-yaml": "^3.6.1",
-    "nvl": "^1.0.1",
-    "promise-sequential": "^1.1.1",
-    "rc": "^1.1.6",
-    "user-home": "^2.0.0",
+    "p-series": "^1.0.0",
+    "rc": "^1.2.2",
     "yargs": "^10.0.3"
   },
   "devDependencies": {
+    "@types/fs-extra": "^4.0.5",
+    "@types/js-yaml": "^3.10.1",
+    "@types/node": "8",
     "chai": "*",
-    "chai-files": "^1.4.0",
-    "eslint": "^4.1.0",
-    "eslint-config-gluons": "^2.0.1",
-    "mocha": "*"
+    "mocha": "*",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.8.0",
+    "tslint-config-gluons": "^1.0.5",
+    "typescript": "^2.6.2"
   }
 }
