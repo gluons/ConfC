@@ -7,6 +7,7 @@ import { resolve } from 'path';
 import chalk from 'chalk';
 import { prompt } from 'inquirer';
 import pWaterfall = require('p-waterfall');
+import updateNotifier = require('update-notifier');
 import yargs = require('yargs');
 
 import { copyFiles, defaultConfig } from './lib';
@@ -14,11 +15,14 @@ import { askChooseFiles, loadConfig } from './utils';
 
 const { cyan, green } = chalk;
 
+const pkg = require('../package.json');
 const confcName = green('confc');
 const description = cyan('Clone your default configuration files to current working directory.');
 const aww = '(｡◕‿◕｡)';
 
 const config: Config = loadConfig();
+
+updateNotifier({ pkg }); // Update notification
 
 const argv = yargs
 	.config(config)
