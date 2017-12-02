@@ -1,5 +1,3 @@
-/// <reference path="../../types/Config.d.ts" />
-
 import { readFileSync } from 'fs';
 import { homedir } from 'os';
 import { resolve } from 'path';
