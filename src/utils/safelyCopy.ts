@@ -14,9 +14,9 @@ import displayVerbose from './displayVerbose';
  */
 export default async function safelyCopy(src: string, options: CopyOptions = { overwrite: false, verbose: false }): Promise<boolean> {
 	if ((src.length > 0) && existsSync(src)) {
-		let filename = basename(src);
+		let fileName = basename(src);
 		let cwd = process.cwd();
-		let dest = resolve(cwd, filename);
+		let dest = resolve(cwd, fileName);
 
 		let copyWithVerbose = async (): Promise<boolean> => {
 			await copy(src, dest, { overwrite: true });
