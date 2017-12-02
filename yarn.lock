@@ -16,6 +16,10 @@
   version "8.0.53"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
 
+"@types/yargs@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-8.0.2.tgz#0f9c7b236e2d78cd8f4b6502de15d0728aa29385"
+
 ansi-escapes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.0.0.tgz#ec3e8b4e9f8064fc02c3ac9b65f1c275bda8ef92"
@@ -514,6 +518,12 @@ p-reduce@^1.0.0:
 p-series@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-series/-/p-series-1.0.0.tgz#7ec9e7b4406cc32066298a6f9860e55e91b36e07"
+  dependencies:
+    p-reduce "^1.0.0"
+
+p-waterfall@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/p-waterfall/-/p-waterfall-1.0.0.tgz#7ed94b3ceb3332782353af6aae11aa9fc235bb00"
   dependencies:
     p-reduce "^1.0.0"
 
