@@ -9,8 +9,11 @@ import { basename, resolve } from 'path';
  * @param {SilentlyCopyOptions} [options={ overwrite: false }] Copy options.
  * @returns {Promise<void>}
  */
-export default async function silentlyCopy(src: string, options: SilentlyCopyOptions = { overwrite: false }): Promise<void> {
-	if ((src.length > 0) && existsSync(src)) {
+export default async function silentlyCopy(
+	src: string,
+	options: SilentlyCopyOptions = { overwrite: false }
+): Promise<void> {
+	if (src.length > 0 && existsSync(src)) {
 		let fileName = basename(src);
 		let cwd = process.cwd();
 		let dest = resolve(cwd, fileName);

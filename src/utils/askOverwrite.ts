@@ -11,12 +11,19 @@ const { yellow, magenta, green } = chalk;
  * @param {string} dest Path to destination file.
  * @returns {Promise<boolean>}
  */
-export default async function askOverwrite(src: string, dest: string): Promise<boolean> {
+export default async function askOverwrite(
+	src: string,
+	dest: string
+): Promise<boolean> {
 	let answers = await prompt([
 		{
 			type: 'confirm',
 			name: 'overwrite',
-			message: yellow(`Do you want to overwrite "${magenta(dest)}" with "${green(src)}"`),
+			message: yellow(
+				`Do you want to overwrite "${magenta(dest)}" with "${green(
+					src
+				)}"`
+			),
 			default: true
 		}
 	]);

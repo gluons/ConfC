@@ -17,7 +17,9 @@ const { cyan, green } = chalk;
 
 const pkg = require('../package.json');
 const confcName = green('confc');
-const description = cyan('Clone your default configuration files to current working directory.');
+const description = cyan(
+	'Clone your default configuration files to current working directory.'
+);
 const aww = '(｡◕‿◕｡)';
 
 const config: Config = loadConfig();
@@ -30,7 +32,9 @@ const argv = yargs
 	.alias('help', 'h')
 	.version()
 	.alias('version', 'V')
-	.usage(`Usage: ${confcName} [options] [filenames...]${EOL + EOL + description}`)
+	.usage(
+		`Usage: ${confcName} [options] [filenames...]${EOL + EOL + description}`
+	)
 	.option('path', {
 		alias: 'p',
 		type: 'string',
@@ -50,24 +54,33 @@ const argv = yargs
 		desc: 'Display more information',
 		default: false
 	})
-	.example(confcName, chalk`Clone default files from your {bold home path} to {bold current working directory}`)
-	.example(`${confcName} .eslintrc.json .editorconfig`, chalk`Clone {yellow .eslintrc.json} and {yellow .editorconfig} from your {bold home path} to {bold current working directory}`)
-	.example(`${confcName} --path ./myConfigs/ .editorconfig`, chalk`Clone {yellow .editorconfig} from {magenta.bold ./myConfigs/} directory to {bold current working directory}`)
-	.argv;
+	.example(
+		confcName,
+		chalk`Clone default files from your {bold home path} to {bold current working directory}`
+	)
+	.example(
+		`${confcName} .eslintrc.json .editorconfig`,
+		chalk`Clone {yellow .eslintrc.json} and {yellow .editorconfig} from your {bold home path} to {bold current working directory}`
+	)
+	.example(
+		`${confcName} --path ./myConfigs/ .editorconfig`,
+		chalk`Clone {yellow .editorconfig} from {magenta.bold ./myConfigs/} directory to {bold current working directory}`
+	).argv;
 
 let srcPath: string = argv.path;
 let files: string[] = argv._;
 let overwrite: boolean = argv.overwrite;
 let verbose: boolean = argv.verbose;
 
-files = Array.isArray(files) && (files.length === 0) ? config.files : files; // Use default files when no files given.
+files = Array.isArray(files) && files.length === 0 ? config.files : files; // Use default files when no files given.
 
 let existentFiles = files.filter(file => existsSync(resolve(srcPath, file))); // Get only existent files.
 
 pWaterfall(
 	[
 		(initialValues: string[]) => askChooseFiles(initialValues),
-		(chosenFiles: string[]) => copyFiles(chosenFiles, srcPath, { overwrite, verbose })
+		(chosenFiles: string[]) =>
+			copyFiles(chosenFiles, srcPath, { overwrite, verbose })
 	],
 	existentFiles
 )

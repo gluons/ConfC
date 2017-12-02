@@ -10,7 +10,9 @@ const { green } = chalk;
  * @param {string[]} existentFiles Existent files.
  * @returns {Promise<string[]>}
  */
-export default async function askChooseFiles(existentFiles: string[]): Promise<string[]> {
+export default async function askChooseFiles(
+	existentFiles: string[]
+): Promise<string[]> {
 	let fileChoices = existentFiles.map(file => ({
 		name: file,
 		value: file,

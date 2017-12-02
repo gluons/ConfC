@@ -18,6 +18,7 @@
   "scripts": {
     "prebuild": "rimraf dist/*",
     "build": "tsc -p .",
+    "format": "prettier --write \"{src,types}/**/*.ts\"",
     "lint": "tslint -p .",
     "clean-test": "node ./scripts/clean-test.js",
     "pretest": "npm run clean-test",
@@ -58,6 +59,7 @@
     "@types/yargs": "^8.0.2",
     "chai": "*",
     "mocha": "*",
+    "prettier": "^1.8.2",
     "rimraf": "^2.6.2",
     "tslint": "^5.8.0",
     "tslint-config-gluons": "^1.0.5",

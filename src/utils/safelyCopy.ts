@@ -12,8 +12,11 @@ import displayVerbose from './displayVerbose';
  * @param {CopyOptions} [options={ overwrite: false, verbose: false }] Copy options.
  * @returns {Promise<boolean>}
  */
-export default async function safelyCopy(src: string, options: CopyOptions = { overwrite: false, verbose: false }): Promise<boolean> {
-	if ((src.length > 0) && existsSync(src)) {
+export default async function safelyCopy(
+	src: string,
+	options: CopyOptions = { overwrite: false, verbose: false }
+): Promise<boolean> {
+	if (src.length > 0 && existsSync(src)) {
 		let fileName = basename(src);
 		let cwd = process.cwd();
 		let dest = resolve(cwd, fileName);
@@ -29,7 +32,9 @@ export default async function safelyCopy(src: string, options: CopyOptions = { o
 			 * Whem `dest` file already exist and force to overwrite is `false`, ask to overwrite.
 			 * If user say yes, overwrite it.
 			 */
-			return (await askOverwrite(src, dest)) ? await copyWithVerbose() : false;
+			return (await askOverwrite(src, dest))
+				? await copyWithVerbose()
+				: false;
 		} else {
 			/*
 			 * When no file at `dest` or it's forced to overwrite, just copy it.

@@ -19,7 +19,11 @@ const defaultCopyOptions: CopyOptions = {
  * @param {CopyOptions} [options=defaultCopyOptions] Copy options.
  * @returns {Promise<void>}
  */
-export default async function copyFiles(fileNames: string[], srcPath: string, options: CopyOptions = defaultCopyOptions): Promise<void> {
+export default async function copyFiles(
+	fileNames: string[],
+	srcPath: string,
+	options: CopyOptions = defaultCopyOptions
+): Promise<void> {
 	if (fileNames.length === 0) {
 		throw new Error('No filenames given.');
 	}
@@ -27,8 +31,10 @@ export default async function copyFiles(fileNames: string[], srcPath: string, op
 		throw new Error('No source path.');
 	}
 
-	await pSeries(fileNames.map(fileName => {
-		let src = resolve(srcPath, fileName);
-		return safelyCopy(src, options);
-	}));
+	await pSeries(
+		fileNames.map(fileName => {
+			let src = resolve(srcPath, fileName);
+			return safelyCopy(src, options);
+		})
+	);
 }

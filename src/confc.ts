@@ -11,7 +11,7 @@ import { loadConfig, silentlyCopy } from './utils';
  * @returns {obj is ConfCOptions}
  */
 function isConfCOptions(obj: any): obj is ConfCOptions {
-	return (typeof obj === 'object') && (('path' in obj) || ('overwrite' in obj));
+	return typeof obj === 'object' && ('path' in obj || 'overwrite' in obj);
 }
 
 /**
@@ -21,9 +21,15 @@ function isConfCOptions(obj: any): obj is ConfCOptions {
  * @param {ConfCOptions} [options] Options.
  * @returns {Promise<void>}
  */
-async function confc(fileNames: string[], options?: ConfCOptions): Promise<void>;
+async function confc(
+	fileNames: string[],
+	options?: ConfCOptions
+): Promise<void>;
 async function confc(options?: ConfCOptions): Promise<void>;
-async function confc(fileNamesOrOptions?: string[] | ConfCOptions, options?: ConfCOptions): Promise<void> {
+async function confc(
+	fileNamesOrOptions?: string[] | ConfCOptions,
+	options?: ConfCOptions
+): Promise<void> {
 	const config = loadConfig();
 	const defaultOptions: ConfCOptions = {
 		path: config.path,
@@ -34,7 +40,11 @@ async function confc(fileNamesOrOptions?: string[] | ConfCOptions, options?: Con
 	let finalOptions: ConfCOptions;
 	if (Array.isArray(fileNamesOrOptions)) {
 		fileNames = fileNamesOrOptions;
-		finalOptions = Object.assign({}, defaultOptions, nvl(options, defaultOptions));
+		finalOptions = Object.assign(
+			{},
+			defaultOptions,
+			nvl(options, defaultOptions)
+		);
 	} else if (isConfCOptions(fileNamesOrOptions)) {
 		fileNames = config.files;
 		finalOptions = Object.assign({}, defaultOptions, fileNamesOrOptions);
@@ -45,12 +55,14 @@ async function confc(fileNamesOrOptions?: string[] | ConfCOptions, options?: Con
 
 	let { path: srcPath, overwrite } = finalOptions;
 
-	await Promise.all(fileNames.map(fileName => {
-		let src = resolve(srcPath, fileName);
-		return silentlyCopy(src, {
-			overwrite: finalOptions.overwrite
-		});
-	}));
+	await Promise.all(
+		fileNames.map(fileName => {
+			let src = resolve(srcPath, fileName);
+			return silentlyCopy(src, {
+				overwrite: finalOptions.overwrite
+			});
+		})
+	);
 }
 
 export = confc;

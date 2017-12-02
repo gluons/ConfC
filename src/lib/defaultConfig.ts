@@ -5,7 +5,9 @@ import { resolve } from 'path';
 import { safeLoad } from 'js-yaml';
 
 const userHome = homedir();
-const defaultFiles = safeLoad(readFileSync(resolve(__dirname, '../../files.yaml'), 'utf8'));
+const defaultFiles = safeLoad(
+	readFileSync(resolve(__dirname, '../../files.yaml'), 'utf8')
+);
 
 export default {
 	path: userHome,
