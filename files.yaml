@@ -2,6 +2,7 @@
 
 - .bowerrc
 - .editorconfig
-- .typingsrc
 - .eslintrc.json
+- .prettierrc
 - coffeelint.json
+- tslint.json

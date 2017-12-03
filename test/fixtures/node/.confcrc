@@ -1,0 +1,6 @@
+{
+	"path": "../src",
+	"files": ["c", "d"],
+	"overwrite": true,
+	"verbose": false
+}

@@ -1,18 +1,32 @@
 {
   "name": "confc",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Start new project with your default configs.",
-  "main": "confc.js",
+  "files": [
+    "dist",
+    "types",
+    "files.yaml"
+  ],
+  "main": "./dist/confc.js",
+  "module": "./dist/confc.esm.js",
+  "typings": "./dist/confc.d.ts",
+  "engines": {
+    "node": ">=6"
+  },
   "preferGlobal": true,
   "bin": {
-    "confc": "./bin/confc.js"
+    "confc": "./dist/cli.js"
   },
   "scripts": {
-    "lint": "eslint .",
-    "clean-test": "node ./scripts/clean-test.js",
-    "pretest": "npm run clean-test",
-    "test": "mocha",
-    "posttest": "npm run clean-test"
+    "prebuild": "rimraf dist/*",
+    "build": "tsc -p .",
+    "postbuild": "ts-node ./scripts/chmodCLI.ts",
+    "format": "prettier --write \"{src,types,test}/**/*.ts\"",
+    "lint": "tslint -p .",
+    "clean-test": "ts-node ./scripts/cleanTests.ts",
+    "pretest": "run-s build clean-test",
+    "test": "mocha --require ts-node/register \"test/*.test.ts\"",
+    "posttest": "run-s clean-test"
   },
   "repository": {
     "type": "git",
@@ -30,21 +44,35 @@
   },
   "homepage": "https://github.com/gluons/ConfC",
   "dependencies": {
-    "chalk": "^2.0.0",
-    "fs-extra": "^4.0.0",
-    "inquirer": "^4.0.0",
+    "chalk": "^2.3.0",
+    "fs-extra": "^4.0.2",
+    "inquirer": "^4.0.1",
     "js-yaml": "^3.6.1",
-    "nvl": "^1.0.1",
-    "promise-sequential": "^1.1.1",
-    "rc": "^1.1.6",
-    "user-home": "^2.0.0",
+    "nvl": "^1.1.0",
+    "p-series": "^1.0.0",
+    "p-waterfall": "^1.0.0",
+    "rc": "^1.2.2",
+    "update-notifier": "^2.3.0",
     "yargs": "^10.0.3"
   },
   "devDependencies": {
+    "@types/chai": "^4.0.6",
+    "@types/fs-extra": "^4.0.5",
+    "@types/js-yaml": "^3.10.1",
+    "@types/mocha": "^2.2.44",
+    "@types/node": "8",
+    "@types/yargs": "^8.0.2",
     "chai": "*",
     "chai-files": "^1.4.0",
-    "eslint": "^4.1.0",
-    "eslint-config-gluons": "^2.0.1",
-    "mocha": "*"
+    "cross-spawn": "^5.1.0",
+    "del": "^3.0.0",
+    "mocha": "*",
+    "npm-run-all": "^4.1.2",
+    "prettier": "^1.8.2",
+    "rimraf": "^2.6.2",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.8.0",
+    "tslint-config-gluons": "^1.0.5",
+    "typescript": "^2.6.2"
   }
 }
