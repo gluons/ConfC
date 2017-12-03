@@ -20,6 +20,7 @@
   "scripts": {
     "prebuild": "rimraf dist/*",
     "build": "tsc -p .",
+    "postbuild": "ts-node ./scripts/chmodCLI.ts",
     "format": "prettier --write \"{src,types,test}/**/*.ts\"",
     "lint": "tslint -p .",
     "clean-test": "ts-node ./scripts/cleanTests.ts",
