@@ -4,3 +4,4 @@
 - .editorconfig
 - .eslintrc.json
 - coffeelint.json
+- tslint.json
