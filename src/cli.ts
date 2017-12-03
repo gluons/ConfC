@@ -84,7 +84,8 @@ let existentFiles = files.filter(file => existsSync(resolve(srcPath, file))); //
 
 pWaterfall(
 	[
-		(initialValues: string[]) => yes ? initialValues : askChooseFiles(initialValues),
+		(initialValues: string[]) =>
+			yes ? initialValues : askChooseFiles(initialValues),
 		async (chosenFiles: string[]) => {
 			if (isFilledArray(chosenFiles)) {
 				await copyFiles(chosenFiles, srcPath, { overwrite, verbose });

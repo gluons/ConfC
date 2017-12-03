@@ -6,5 +6,5 @@
  * @returns {boolean}
  */
 export default function isFilledArray(value): boolean {
-	return Array.isArray(value) && (value.length > 0);
+	return Array.isArray(value) && value.length > 0;
 }

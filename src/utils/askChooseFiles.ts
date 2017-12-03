@@ -29,7 +29,9 @@ export default async function askChooseFiles(
 			choices: fileChoices
 		}
 	]);
-	let chosenFiles: string[] = isFilledArray(answers.chosenFiles) ? answers.chosenFiles : [];
+	let chosenFiles: string[] = isFilledArray(answers.chosenFiles)
+		? answers.chosenFiles
+		: [];
 
 	return chosenFiles;
 }
