@@ -25,6 +25,12 @@ async function confc(
 	fileNames: string[],
 	options?: ConfCOptions
 ): Promise<void>;
+/**
+ * Clone configuration files to current working directory.
+ *
+ * @param {ConfCOptions} [options] Options.
+ * @returns {Promise<void>}
+ */
 async function confc(options?: ConfCOptions): Promise<void>;
 async function confc(
 	fileNamesOrOptions?: string[] | ConfCOptions,
