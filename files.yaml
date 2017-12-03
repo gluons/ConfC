@@ -3,5 +3,6 @@
 - .bowerrc
 - .editorconfig
 - .eslintrc.json
+- .prettierrc
 - coffeelint.json
 - tslint.json
