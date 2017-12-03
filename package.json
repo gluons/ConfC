@@ -18,12 +18,12 @@
   "scripts": {
     "prebuild": "rimraf dist/*",
     "build": "tsc -p .",
-    "format": "prettier --write \"{src,types}/**/*.ts\"",
+    "format": "prettier --write \"{src,types,test}/**/*.ts\"",
     "lint": "tslint -p .",
-    "clean-test": "node ./scripts/clean-test.js",
-    "pretest": "npm run clean-test",
-    "test": "mocha",
-    "posttest": "npm run clean-test"
+    "clean-test": "ts-node ./scripts/cleanTests.ts",
+    "pretest": "run-s build clean-test",
+    "test": "mocha --require ts-node/register \"test/*.test.ts\"",
+    "posttest": "run-s clean-test"
   },
   "repository": {
     "type": "git",
@@ -53,14 +53,21 @@
     "yargs": "^10.0.3"
   },
   "devDependencies": {
+    "@types/chai": "^4.0.6",
     "@types/fs-extra": "^4.0.5",
     "@types/js-yaml": "^3.10.1",
+    "@types/mocha": "^2.2.44",
     "@types/node": "8",
     "@types/yargs": "^8.0.2",
     "chai": "*",
+    "chai-files": "^1.4.0",
+    "cross-spawn": "^5.1.0",
+    "del": "^3.0.0",
     "mocha": "*",
+    "npm-run-all": "^4.1.2",
     "prettier": "^1.8.2",
     "rimraf": "^2.6.2",
+    "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
     "tslint-config-gluons": "^1.0.5",
     "typescript": "^2.6.2"
