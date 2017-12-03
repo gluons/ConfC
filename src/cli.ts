@@ -48,6 +48,11 @@ const argv = yargs
 		desc: 'Force to overwrite',
 		default: false
 	})
+	.option('yes', {
+		alias: 'y',
+		type: 'boolean',
+		desc: `Say ${green('yes')} without inquiry`
+	})
 	.option('verbose', {
 		alias: 'v',
 		type: 'boolean',
@@ -69,6 +74,7 @@ const argv = yargs
 
 let srcPath: string = argv.path;
 let files: string[] = argv._;
+let yes: boolean = argv.yes;
 let overwrite: boolean = argv.overwrite;
 let verbose: boolean = argv.verbose;
 
@@ -78,7 +84,7 @@ let existentFiles = files.filter(file => existsSync(resolve(srcPath, file))); //
 
 pWaterfall(
 	[
-		(initialValues: string[]) => askChooseFiles(initialValues),
+		(initialValues: string[]) => yes ? initialValues : askChooseFiles(initialValues),
 		async (chosenFiles: string[]) => {
 			if (isFilledArray(chosenFiles)) {
 				await copyFiles(chosenFiles, srcPath, { overwrite, verbose });
