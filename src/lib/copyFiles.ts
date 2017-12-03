@@ -34,7 +34,7 @@ export default async function copyFiles(
 	await pSeries(
 		fileNames.map(fileName => {
 			let src = resolve(srcPath, fileName);
-			return safelyCopy(src, options);
+			return () => safelyCopy(src, options);
 		})
 	);
 }
