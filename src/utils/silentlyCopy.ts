@@ -1,6 +1,8 @@
 import { copy, existsSync } from 'fs-extra';
 import { basename, resolve } from 'path';
 
+import { resolveSymlink } from './';
+
 /**
  * Silently copy a file to current working directory.
  *
@@ -14,6 +16,7 @@ export default async function silentlyCopy(
 	options: SilentlyCopyOptions = { cwd: process.cwd(), overwrite: false }
 ): Promise<void> {
 	if (src.length > 0 && existsSync(src)) {
+		src = resolveSymlink(src);
 		let fileName = basename(src);
 		let dest = resolve(options.cwd, fileName);
 		let hasDest = existsSync(dest);

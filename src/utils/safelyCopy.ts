@@ -1,8 +1,7 @@
 import { copy, existsSync } from 'fs-extra';
 import { basename, resolve } from 'path';
 
-import askOverwrite from './askOverwrite';
-import displayVerbose from './displayVerbose';
+import { askOverwrite, displayVerbose, resolveSymlink } from './';
 
 /**
  * Safely copy a file to current working directory.
@@ -17,6 +16,7 @@ export default async function safelyCopy(
 	options: CopyOptions = { overwrite: false, verbose: false }
 ): Promise<boolean> {
 	if (src.length > 0 && existsSync(src)) {
+		src = resolveSymlink(src);
 		let fileName = basename(src);
 		let cwd = process.cwd();
 		let dest = resolve(cwd, fileName);
