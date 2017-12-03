@@ -11,7 +11,10 @@ import { loadConfig, silentlyCopy } from './utils';
  * @returns {obj is ConfCOptions}
  */
 function isConfCOptions(obj: any): obj is ConfCOptions {
-	return typeof obj === 'object' && ('path' in obj || 'overwrite' in obj);
+	return (
+		typeof obj === 'object' &&
+		('path' in obj || 'cwd' in obj || 'overwrite' in obj)
+	);
 }
 
 /**
@@ -39,6 +42,7 @@ async function confc(
 	const config = loadConfig();
 	const defaultOptions: ConfCOptions = {
 		path: config.path,
+		cwd: process.cwd(),
 		overwrite: config.overwrite
 	};
 
@@ -59,13 +63,14 @@ async function confc(
 		finalOptions = defaultOptions;
 	}
 
-	let { path: srcPath, overwrite } = finalOptions;
+	let { path: srcPath, cwd, overwrite } = finalOptions;
 
 	await Promise.all(
 		fileNames.map(fileName => {
 			let src = resolve(srcPath, fileName);
 			return silentlyCopy(src, {
-				overwrite: finalOptions.overwrite
+				cwd,
+				overwrite
 			});
 		})
 	);

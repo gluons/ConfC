@@ -11,12 +11,11 @@ import { basename, resolve } from 'path';
  */
 export default async function silentlyCopy(
 	src: string,
-	options: SilentlyCopyOptions = { overwrite: false }
+	options: SilentlyCopyOptions = { cwd: process.cwd(), overwrite: false }
 ): Promise<void> {
 	if (src.length > 0 && existsSync(src)) {
 		let fileName = basename(src);
-		let cwd = process.cwd();
-		let dest = resolve(cwd, fileName);
+		let dest = resolve(options.cwd, fileName);
 		let hasDest = existsSync(dest);
 
 		if ((hasDest && options.overwrite) || !hasDest) {

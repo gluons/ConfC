@@ -17,13 +17,9 @@ const targetDir = resolve(__dirname, './fixtures/node');
 /* tslint:disable: no-unused-expression */
 describe('Clone config files via Node API', () => {
 	before(done => {
-		process.chdir(targetDir);
-		confc()
+		confc({ cwd: targetDir })
 			.then(done)
 			.catch(done);
-	});
-	after(() => {
-		process.chdir(__dirname); // Back to current directory.
 	});
 
 	let targetC = resolve(targetDir, 'c');
