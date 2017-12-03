@@ -39,7 +39,16 @@ async function confc(
 	fileNamesOrOptions?: string[] | ConfCOptions,
 	options?: ConfCOptions
 ): Promise<void> {
-	const config = loadConfig();
+	// tslint:disable-next-line: only-arrow-functions space-before-function-paren
+	const config: Config = (function() {
+		if (isConfCOptions(fileNamesOrOptions) && fileNamesOrOptions.cwd) {
+			return loadConfig(fileNamesOrOptions.cwd);
+		} else if (options && options.cwd) {
+			return loadConfig(options.cwd);
+		} else {
+			return loadConfig();
+		}
+	})();
 	const defaultOptions: ConfCOptions = {
 		path: config.path,
 		cwd: process.cwd(),
@@ -67,7 +76,7 @@ async function confc(
 
 	await Promise.all(
 		fileNames.map(fileName => {
-			let src = resolve(srcPath, fileName);
+			let src = resolve(cwd, srcPath, fileName);
 			return silentlyCopy(src, {
 				cwd,
 				overwrite
