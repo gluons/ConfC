@@ -1,6 +1,8 @@
 import chalk from 'chalk';
 import { prompt } from 'inquirer';
 
+import isFilledArray from './isFilledArray';
+
 const { green } = chalk;
 
 /**
@@ -27,7 +29,7 @@ export default async function askChooseFiles(
 			choices: fileChoices
 		}
 	]);
-	let chosenFiles: string[] = answers.chosenFiles;
+	let chosenFiles: string[] = isFilledArray(answers.chosenFiles) ? answers.chosenFiles : [];
 
 	return chosenFiles;
 }

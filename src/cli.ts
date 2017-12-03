@@ -11,7 +11,7 @@ import updateNotifier = require('update-notifier');
 import yargs = require('yargs');
 
 import { copyFiles, defaultConfig } from './lib';
-import { askChooseFiles, loadConfig } from './utils';
+import { askChooseFiles, isFilledArray, loadConfig } from './utils';
 
 const { cyan, green } = chalk;
 
@@ -72,20 +72,26 @@ let files: string[] = argv._;
 let overwrite: boolean = argv.overwrite;
 let verbose: boolean = argv.verbose;
 
-files = Array.isArray(files) && files.length === 0 ? config.files : files; // Use default files when no files given.
+files = isFilledArray(files) ? files : config.files; // Use default files when no files given.
 
 let existentFiles = files.filter(file => existsSync(resolve(srcPath, file))); // Get only existent files.
 
 pWaterfall(
 	[
 		(initialValues: string[]) => askChooseFiles(initialValues),
-		(chosenFiles: string[]) =>
-			copyFiles(chosenFiles, srcPath, { overwrite, verbose })
+		async (chosenFiles: string[]) => {
+			if (isFilledArray(chosenFiles)) {
+				await copyFiles(chosenFiles, srcPath, { overwrite, verbose });
+				return true;
+			} else {
+				return false;
+			}
+		}
 	],
 	existentFiles
 )
-	.then(() => {
-		console.log(`${EOL + green('ConfC completed.')} ${aww}`);
+	.then((result: boolean) => {
+		result && console.log(`${EOL + green('ConfC completed.')} ${aww}`);
 	})
 	.catch(err => {
 		console.error(err);
