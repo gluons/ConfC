@@ -8,6 +8,8 @@
     "files.yaml"
   ],
   "main": "./dist/confc.js",
+  "module": "./dist/confc.esm.js",
+  "typings": "./dist/confc.d.ts",
   "engines": {
     "node": ">=6"
   },
