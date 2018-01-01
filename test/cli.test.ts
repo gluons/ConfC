@@ -17,12 +17,14 @@ const targetDir = resolve(__dirname, './fixtures/cli');
 
 /* tslint:disable: no-unused-expression */
 describe('Clone config files via CLI', () => {
-	before(done => {
+	before(function (done) {
+		this.timeout(5000); // Increase timeout.
+
 		let child: ChildProcess = spawn('node', [cliPath, '-y'], {
 			cwd: targetDir,
 			stdio: ['ignore', 'ignore', process.stderr]
 		});
-		child.on('close', code => {
+		child.on('exit', code => {
 			if (code === 0) {
 				done();
 			} else {
