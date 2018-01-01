@@ -177,3 +177,7 @@ Type: `Object`
       console.error(err);
     })
   ```
+
+## Related
+
+- [ConfC.gem](https://github.com/gluons/ConfC.gem) - 🆕 Start new project with your default configs. (💎 Ruby version)
