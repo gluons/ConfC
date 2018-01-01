@@ -22,7 +22,7 @@ describe('Clone config files via CLI', () => {
 			cwd: targetDir,
 			stdio: ['ignore', 'ignore', process.stderr]
 		});
-		child.on('exit', code => {
+		child.on('close', code => {
 			if (code === 0) {
 				done();
 			} else {
