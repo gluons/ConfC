@@ -1,5 +1,11 @@
 {
-  "extends": [
-    "config:base"
-  ]
+	"extends": [
+		"config:base"
+	],
+	"pinVersions": false,
+	"labels": ["renovate"],
+	"assignees": ["gluons"],
+	"reviewers": ["gluons"],
+	"timezone": "Asia/Bangkok",
+	"schedule": ["every weekend"]
 }
