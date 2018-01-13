@@ -5,7 +5,7 @@
 [![Travis](https://img.shields.io/travis/gluons/ConfC.svg?style=flat-square)](https://travis-ci.org/gluons/ConfC)
 [![Gemnasium](https://img.shields.io/gemnasium/gluons/ConfC.svg?style=flat-square)](https://gemnasium.com/github.com/gluons/ConfC)
 [![TSLint](https://img.shields.io/badge/TSLint-gluons-15757B.svg?style=flat-square)](https://github.com/gluons/tslint-config-gluons)
-[![Greenkeeper badge](https://badges.greenkeeper.io/gluons/ConfC.svg)](https://greenkeeper.io/)
+[![Renovate](https://img.shields.io/badge/Renovate-enabled-yellow.svg?style=flat-square)](https://renovateapp.com/)
 
 **Config Clone** — 🆕 Start new project with your default configs.
 
