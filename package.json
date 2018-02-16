@@ -61,7 +61,7 @@
     "@types/js-yaml": "^3.10.1",
     "@types/mocha": "^2.2.44",
     "@types/node": "9",
-    "@types/yargs": "^10.0.0",
+    "@types/yargs": "^11.0.0",
     "chai": "*",
     "chai-files": "^1.4.0",
     "cross-spawn": "^6.0.0",
