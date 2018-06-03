@@ -90,4 +90,3 @@ async function confc(
 }
 
 export default confc;
-module.exports = confc;

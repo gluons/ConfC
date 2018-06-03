@@ -7,7 +7,7 @@
     "types",
     "files.yaml"
   ],
-  "main": "./dist/confc.js",
+  "main": "./dist/confc.cjs.js",
   "module": "./dist/confc.js",
   "typings": "./dist/confc.d.ts",
   "engines": {
