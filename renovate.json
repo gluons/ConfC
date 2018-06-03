@@ -1,12 +1,3 @@
 {
-	"extends": [
-		"config:base"
-	],
-	"pinVersions": false,
-	"labels": ["renovate"],
-	"assignees": ["gluons"],
-	"reviewers": ["gluons"],
-	"timezone": "Asia/Bangkok",
-	"schedule": ["every weekend"],
-	"commitMessage": ":arrow_up: {{semanticPrefix}}Update dependency {{depName}} to version {{newVersion}}"
+	"extends": ["gluons"]
 }
