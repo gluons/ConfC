@@ -4,7 +4,6 @@
   "description": "Start new project with your default configs.",
   "files": [
     "dist",
-    "types",
     "files.yaml"
   ],
   "main": "./dist/confc.cjs.js",
@@ -21,7 +20,7 @@
     "prebuild": "rimraf dist/*",
     "build": "tsc -p .",
     "postbuild": "ts-node ./scripts/chmodCLI.ts",
-    "format": "prettier --write \"{src,types,test}/**/*.ts\"",
+    "format": "prettier --write \"{src,test}/**/*.ts\"",
     "lint": "tslint -p .",
     "clean-test": "ts-node ./scripts/cleanTests.ts",
     "pretest": "run-s build clean-test",
