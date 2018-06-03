@@ -4,7 +4,7 @@ import chai = require('chai');
 import chaiFiles = require('chai-files');
 import { existsSync } from 'fs-extra';
 
-import confc from '../dist/confc.esm';
+import confc from '../dist/confc';
 
 chai.use(chaiFiles);
 
