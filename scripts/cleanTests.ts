@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 
 import chalk from 'chalk';
-import del = require('del');
+import del from 'del';
 
 const rootDir = resolve(__dirname, '../');
 const delOptions = {

@@ -1,14 +1,13 @@
 import { resolve } from 'path';
 
-import chai = require('chai');
-import chaiFiles = require('chai-files');
+import chai, { expect } from 'chai';
+import chaiFiles from 'chai-files';
 import { existsSync } from 'fs-extra';
 
 import confc from '../dist/confc';
 
 chai.use(chaiFiles);
 
-const { expect } = chai;
 const { file } = chaiFiles;
 
 const sourceDir = resolve(__dirname, './fixtures/src');

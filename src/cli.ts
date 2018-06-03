@@ -6,8 +6,8 @@ import { resolve } from 'path';
 
 import chalk from 'chalk';
 import { prompt } from 'inquirer';
-import pWaterfall = require('p-waterfall');
-import updateNotifier = require('update-notifier');
+import pWaterfall from 'p-waterfall';
+import updateNotifier from 'update-notifier';
 import yargs = require('yargs');
 
 import { copyFiles, defaultConfig } from './lib';

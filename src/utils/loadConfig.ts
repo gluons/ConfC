@@ -1,4 +1,4 @@
-import rc = require('rc');
+import rc from 'rc';
 
 import { defaultConfig } from '../lib';
 import Config from '../types/Config';

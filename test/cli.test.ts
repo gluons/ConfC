@@ -1,14 +1,13 @@
 import { ChildProcess } from 'child_process';
 import { resolve } from 'path';
 
-import chai = require('chai');
-import chaiFiles = require('chai-files');
-import spawn = require('cross-spawn');
+import chai, { expect } from 'chai';
+import chaiFiles from 'chai-files';
+import spawn from 'cross-spawn';
 import { existsSync } from 'fs-extra';
 
 chai.use(chaiFiles);
 
-const { expect } = chai;
 const { file } = chaiFiles;
 
 const cliPath = resolve(__dirname, '../dist/cli.js');

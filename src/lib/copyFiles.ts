@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 
-import pSeries = require('p-series');
+import pSeries from 'p-series';
 
 import CopyOptions from '../types/CopyOptions';
 import { safelyCopy } from '../utils';

@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 
-import nvl = require('nvl');
+import nvl from 'nvl';
 
 import ConfCOptions from './types/ConfCOptions';
 import Config from './types/Config';
