@@ -1,6 +1,7 @@
 import { copy, existsSync } from 'fs-extra';
 import { basename, resolve } from 'path';
 
+import CopyOptions from '../types/CopyOptions';
 import { askOverwrite, displayVerbose, resolveSymlink } from './';
 
 /**

@@ -2,6 +2,8 @@ import { resolve } from 'path';
 
 import nvl = require('nvl');
 
+import ConfCOptions from './types/ConfCOptions';
+import Config from './types/Config';
 import { loadConfig, silentlyCopy } from './utils';
 
 /**
@@ -16,6 +18,8 @@ function isConfCOptions(obj: any): obj is ConfCOptions {
 		('path' in obj || 'cwd' in obj || 'overwrite' in obj)
 	);
 }
+
+export { ConfCOptions };
 
 /**
  * Clone configuration files to current working directory.
@@ -85,4 +89,5 @@ async function confc(
 	);
 }
 
-export = confc;
+export default confc;
+module.exports = confc;

@@ -4,6 +4,8 @@ import { resolve } from 'path';
 
 import { safeLoad } from 'js-yaml';
 
+import Config from '../types/Config';
+
 const userHome = homedir();
 const defaultFiles = safeLoad(
 	readFileSync(resolve(__dirname, '../../files.yaml'), 'utf8')

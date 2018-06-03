@@ -1,9 +1,10 @@
 /**
  * Copy options.
  *
+ * @export
  * @interface CopyOptions
  */
-interface CopyOptions {
+export default interface CopyOptions {
 	/**
 	 * Force to overwrite.
 	 *

@@ -1,9 +1,10 @@
 /**
  * ConfC's configuration.
  *
+ * @export
  * @interface Config
  */
-interface Config {
+export default interface Config {
 	/**
 	 * Path to the directory that contain your default configuration files.
 	 *

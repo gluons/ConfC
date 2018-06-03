@@ -1,9 +1,10 @@
 /**
  * SilentlyCopy options.
  *
+ * @export
  * @interface SilentlyCopyOptions
  */
-interface SilentlyCopyOptions {
+export default interface SilentlyCopyOptions {
 	/**
 	 * Current working directory.
 	 *

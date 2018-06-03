@@ -1,6 +1,7 @@
 import rc = require('rc');
 
 import { defaultConfig } from '../lib';
+import Config from '../types/Config';
 
 /**
  * Load configuration. (with fallback)

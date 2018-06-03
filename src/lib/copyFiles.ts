@@ -2,6 +2,7 @@ import { resolve } from 'path';
 
 import pSeries = require('p-series');
 
+import CopyOptions from '../types/CopyOptions';
 import { safelyCopy } from '../utils';
 import defaultConfig from './defaultConfig';
 

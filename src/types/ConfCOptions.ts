@@ -1,9 +1,10 @@
 /**
  * ConfC's options.
  *
+ * @export
  * @interface ConfCOptions
  */
-interface ConfCOptions {
+export default interface ConfCOptions {
 	/**
 	 * Path to configuration files.
 	 *

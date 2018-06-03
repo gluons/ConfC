@@ -11,6 +11,7 @@ import updateNotifier = require('update-notifier');
 import yargs = require('yargs');
 
 import { copyFiles, defaultConfig } from './lib';
+import Config from './types/Config';
 import { askChooseFiles, isFilledArray, loadConfig } from './utils';
 
 const { cyan, green } = chalk;
@@ -84,8 +85,7 @@ let existentFiles = files.filter(file => existsSync(resolve(srcPath, file))); //
 
 pWaterfall(
 	[
-		(initialValues: string[]) =>
-			yes ? initialValues : askChooseFiles(initialValues),
+		(initialValues: string[]) => (yes ? initialValues : askChooseFiles(initialValues)),
 		async (chosenFiles: string[]) => {
 			if (isFilledArray(chosenFiles)) {
 				await copyFiles(chosenFiles, srcPath, { overwrite, verbose });

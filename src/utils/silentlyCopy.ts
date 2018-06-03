@@ -1,6 +1,7 @@
 import { copy, existsSync } from 'fs-extra';
 import { basename, resolve } from 'path';
 
+import SilentlyCopyOptions from '../types/SilentlyCopyOptions';
 import { resolveSymlink } from './';
 
 /**
