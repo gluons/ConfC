@@ -1,6 +1,6 @@
 {
   "name": "confc",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Start new project with your default configs.",
   "files": [
     "dist",
