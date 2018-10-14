@@ -7,7 +7,7 @@ import { resolve } from 'path';
 import chalk from 'chalk';
 import pWaterfall from 'p-waterfall';
 import updateNotifier from 'update-notifier';
-import yargs = require('yargs');
+import yargs from 'yargs';
 
 import { copyFiles, defaultConfig } from './lib';
 import Config from './types/Config';
