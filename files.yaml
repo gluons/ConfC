@@ -3,6 +3,16 @@
 - .bowerrc
 - .editorconfig
 - .eslintrc.json
+- .eslintrc.js
+- .eslintrc.yaml
+- .eslintrc.yml
 - .prettierrc
+- .prettierrc.json
+- .prettierrc.js
+- .prettierrc.yaml
+- .prettierrc.yml
+- .prettierrc.toml
+- prettier.config.js
 - coffeelint.json
+- tsconfig.json
 - tslint.json
