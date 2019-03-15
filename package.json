@@ -48,7 +48,7 @@
     "inquirer": "^6.2.0",
     "js-yaml": "^3.6.1",
     "nvl": "^1.1.0",
-    "p-series": "^1.0.0",
+    "p-series": "^2.0.0",
     "p-waterfall": "^1.0.0",
     "rc": "^1.2.2",
     "update-notifier": "^2.3.0",

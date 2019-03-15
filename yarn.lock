@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@gluons/prettier-config/-/prettier-config-2.0.0.tgz#4afa561ccfaee4fdd8b4ed984bcbbd50770207d6"
   integrity sha512-JFcGcVxJZsRENdmRXzthYSq0lFaWitQ150K3BW0nD7ye5n3hRNmS0tHaO/Sw+lxZTf3YL0i1CNbjI0Gf0Zl0UQ==
 
-"@sindresorhus/is@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
-  integrity sha512-ONhaKPIufzzrlNbqtWFFd+jlnemX6lJAgq9ZeiZtS7I1PIf/la7CW4m83rTXRnVnsMbW2k56pGYu7AUFJD9Pow==
+"@sindresorhus/is@^0.15.0":
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.15.0.tgz#96915baa05e6a6a1d137badf4984d3fc05820bb6"
+  integrity sha512-lu8BpxjAtRCAo5ifytTpCPCj99LF7o/2Myn+NXyNCBqvPYn7Pjd76AMmUB5l7XF1U6t0hcWrlEM5ESufW7wAeA==
 
 "@types/chai@^4.1.6":
   version "4.1.6"
@@ -1163,13 +1163,18 @@ p-reduce@^1.0.0:
   resolved "https://registry.yarnpkg.com/p-reduce/-/p-reduce-1.0.0.tgz#18c2b0dd936a4690a529f8231f58a0fdb6a47dfa"
   integrity sha1-GMKw3ZNqRpClKfgjH1ig/bakffo=
 
-p-series@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/p-series/-/p-series-1.1.0.tgz#f2d8522cdfd58b464eb9685651d465037ee3c957"
-  integrity sha512-356covArc9UCfj2twY/sxCJKGMzzO+pJJtucizsPC6aS1xKSTBc9PQrQhvFR3+7F+fa2KBKdJjdIcv6NEWDcIQ==
+p-reduce@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/p-reduce/-/p-reduce-2.0.0.tgz#365a26916213650711124881a6bdc4e32c2bfe36"
+  integrity sha512-VcNNEqiYIkRCGeUHELY5dUrnQHCRwL6eIH/L9oSbl/PsvyHQXD1ws/MFwuEb+6dgH/URCfROVUqOYL37eHi2kQ==
+
+p-series@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/p-series/-/p-series-2.0.0.tgz#9eb2f2401fa0e64743c11a6b88676d36dd21a840"
+  integrity sha512-Wtk9lIcWrZXujgTFUtOo2Y913Y5zGAFPg8yngbA8Le8n5hsv0Qfuhg9DhtMi22vwBU6SmTqvHgTvW8rsl72ekA==
   dependencies:
-    "@sindresorhus/is" "^0.7.0"
-    p-reduce "^1.0.0"
+    "@sindresorhus/is" "^0.15.0"
+    p-reduce "^2.0.0"
 
 p-try@^2.0.0:
   version "2.0.0"
