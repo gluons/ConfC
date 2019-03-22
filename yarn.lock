@@ -1158,11 +1158,6 @@ p-map@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-map/-/p-map-2.0.0.tgz#be18c5a5adeb8e156460651421aceca56c213a50"
   integrity sha512-GO107XdrSUmtHxVoi60qc9tUl/KkNKm+X2CF4P9amalpGxv5YqVPJNfSb0wcA+syCopkZvYYIzW8OVTQW59x/w==
 
-p-reduce@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/p-reduce/-/p-reduce-1.0.0.tgz#18c2b0dd936a4690a529f8231f58a0fdb6a47dfa"
-  integrity sha1-GMKw3ZNqRpClKfgjH1ig/bakffo=
-
 p-reduce@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/p-reduce/-/p-reduce-2.0.0.tgz#365a26916213650711124881a6bdc4e32c2bfe36"
@@ -1181,12 +1176,12 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.0.0.tgz#85080bb87c64688fa47996fe8f7dfbe8211760b1"
   integrity sha512-hMp0onDKIajHfIkdRk3P4CdCmErkYAxxDtP3Wx/4nZ3aGlau2VKh3mZpcuFkH27WQkL/3WBCPOktzA9ZOAnMQQ==
 
-p-waterfall@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/p-waterfall/-/p-waterfall-1.0.0.tgz#7ed94b3ceb3332782353af6aae11aa9fc235bb00"
-  integrity sha1-ftlLPOszMngjU69qrhGqn8I1uwA=
+p-waterfall@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/p-waterfall/-/p-waterfall-2.0.0.tgz#0ab849c3db232b642f29df4aa8449823544a3feb"
+  integrity sha512-DWcvWf71iye0Op1cVxNbWs6b4f48vHdzQ+BKB30r0hja/3Sg8kd6xr9YU5fEIngs4ikraMeZlcdYc45d/7zuLw==
   dependencies:
-    p-reduce "^1.0.0"
+    p-reduce "^2.0.0"
 
 package-json@^4.0.0:
   version "4.0.1"
