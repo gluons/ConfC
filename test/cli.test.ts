@@ -1,48 +1,44 @@
 import { ChildProcess } from 'child_process';
-import { resolve } from 'path';
-
-import chai, { expect } from 'chai';
-import chaiFiles from 'chai-files';
 import spawn from 'cross-spawn';
-import { existsSync } from 'fs-extra';
-
-chai.use(chaiFiles);
-
-const { file } = chaiFiles;
+import { existsSync, readFileSync } from 'fs';
+import { resolve } from 'path';
 
 const cliPath = resolve(__dirname, '../dist/cli.js');
 const sourceDir = resolve(__dirname, './fixtures/src');
 const targetDir = resolve(__dirname, './fixtures/cli');
 
-/* tslint:disable: no-unused-expression */
-describe('Clone config files via CLI', () => {
-	before(function (done) {
-		this.timeout(5000); // Increase timeout.
+const sourceA = resolve(sourceDir, 'a');
+const sourceB = resolve(sourceDir, 'b');
+const targetA = resolve(targetDir, 'a');
+const targetB = resolve(targetDir, 'b');
 
-		let child: ChildProcess = spawn('node', [cliPath, '-y'], {
+describe('Clone config files via CLI', () => {
+	beforeAll(done => {
+		const child: ChildProcess = spawn('node', [cliPath, '-y'], {
 			cwd: targetDir,
 			stdio: ['ignore', 'ignore', process.stderr]
 		});
+
 		child.on('exit', code => {
 			if (code === 0) {
 				done();
 			} else {
-				done(new Error(`confc command exit ${code}`));
+				done.fail(new Error(`confc command exit ${code}`));
 			}
 		});
-	});
-
-	let targetA = resolve(targetDir, 'a');
-	let targetB = resolve(targetDir, 'b');
-	let sourceA = resolve(sourceDir, 'a');
-	let sourceB = resolve(sourceDir, 'b');
+	}, 5000);
 
 	it('should have all expected files in target directory', () => {
-		expect(existsSync(targetA)).to.be.true;
-		expect(existsSync(targetB)).to.be.true;
+		expect(existsSync(targetA)).toBe(true);
+		expect(existsSync(targetB)).toBe(true);
 	});
 	it('all expected files should contain the same content as source', () => {
-		expect(file(targetA)).to.equal(file(sourceA));
-		expect(file(targetB)).to.equal(file(sourceB));
+		const targetAContent = readFileSync(targetA, 'utf8');
+		const targetBContent = readFileSync(targetB, 'utf8');
+		const sourceAContent = readFileSync(sourceA, 'utf8');
+		const sourceBContent = readFileSync(sourceB, 'utf8');
+
+		expect(targetAContent).toEqual(sourceAContent);
+		expect(targetBContent).toEqual(sourceBContent);
 	});
 });
