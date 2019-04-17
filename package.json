@@ -10,7 +10,7 @@
   "module": "./dist/confc.js",
   "typings": "./dist/confc.d.ts",
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "preferGlobal": true,
   "bin": {
