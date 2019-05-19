@@ -52,29 +52,29 @@
     "p-waterfall": "^2.1.0",
     "rc": "^1.2.2",
     "update-notifier": "^3.0.0",
-    "yargs": "^13.2.2"
+    "yargs": "^13.2.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "@babel/preset-typescript": "^7.3.3",
     "@gluons/prettier-config": "^2.0.0",
     "@types/cross-spawn": "^6.0.0",
     "@types/fs-extra": "^7.0.0",
     "@types/glob": "^7.1.1",
-    "@types/jest": "^24.0.11",
+    "@types/jest": "^24.0.13",
     "@types/js-yaml": "^3.12.1",
     "@types/node": "6",
     "@types/yargs": "^13.0.0",
     "cross-spawn": "^6.0.0",
-    "del": "^4.1.0",
-    "jest": "^24.7.1",
+    "del": "^4.1.1",
+    "jest": "^24.8.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.17.0",
+    "prettier": "^1.17.1",
     "rimraf": "^2.6.3",
     "ts-node": "^8.1.0",
     "tslint": "^5.16.0",
     "tslint-config-gluons": "^2.1.0",
-    "typescript": "^3.4.3"
+    "typescript": "^3.4.5"
   }
 }
