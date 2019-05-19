@@ -19,7 +19,7 @@ describe('Clone config files via Node API', () => {
 	it('should have all expected files in target directory', () => {
 		expect(existsSync(targetC)).toBe(true);
 		expect(existsSync(targetD)).toBe(true);
-	});
+	}, 10000);
 	it('all expected files should contain the same content as source', () => {
 		const targetCContent = readFileSync(targetC, 'utf8');
 		const targetDContent = readFileSync(targetD, 'utf8');
@@ -28,5 +28,5 @@ describe('Clone config files via Node API', () => {
 
 		expect(targetCContent).toEqual(sourceCContent);
 		expect(targetDContent).toEqual(sourceDContent);
-	});
+	}, 10000);
 });
