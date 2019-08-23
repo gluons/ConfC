@@ -52,7 +52,7 @@
     "p-waterfall": "^2.1.0",
     "rc": "^1.2.2",
     "update-notifier": "^3.0.0",
-    "yargs": "^13.2.4"
+    "yargs": "^14.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
