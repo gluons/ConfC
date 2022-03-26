@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/gluons/ConfC",
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "^5.0.0",
     "fs-extra": "^9.0.1",
     "inquirer": "^7.3.2",
     "js-yaml": "^3.14.0",
